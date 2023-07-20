@@ -3,8 +3,14 @@
 import { useState, useEffect, Key } from 'react'
 import PromptCard from './PromptCard'
 
+interface PromptObjectProps {
+  _id: string | number
+  prompt: string
+  tag: string
+}
+
 interface PromptCardListProps {
-  data: Record<string, any>
+  data: Array<PromptObjectProps>
   handleTagClick: Function
 }
 
