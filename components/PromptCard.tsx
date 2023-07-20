@@ -15,7 +15,11 @@ const PromptCard = ({
   const [copied, setCopied] = useState('')
 
   const handleProfileClick = () => {}
-  const handleCopy = () => {}
+  const handleCopy = () => {
+    setCopied(promptObj.prompt)
+    navigator.clipboard.writeText(promptObj.prompt)
+    setTimeout(() => setCopied(''), 4000)
+  }
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
