@@ -3,10 +3,20 @@
 import { useState, useEffect, Key } from 'react'
 import PromptCard from './PromptCard'
 
+interface UserProps {
+  _id: string | number
+  email: string
+  username: string
+  image: string
+  __v: string
+}
+
 interface PromptObjectProps {
   _id: string | number
+  creator: UserProps
   prompt: string
   tag: string
+  __v: number
 }
 
 interface PromptCardListProps {
@@ -16,19 +26,17 @@ interface PromptCardListProps {
 
 export interface PromptCardProps {
   key?: Key
-  prompt: Record<string, any>
+  promptObj: PromptObjectProps
   handleTagClick: Function
-}
-
-interface PromptMapProps {
-  _id: string | number
+  // handleEdit: Function
+  // handleDelete: Function
 }
 
 const PromptCardList = ({ data, handleTagClick }: PromptCardListProps) => {
   return (
     <div className="mt-16 prompt_layout">
-      {data.map((p: PromptMapProps) => (
-        <PromptCard key={p._id} prompt={p} handleTagClick={handleTagClick} />
+      {data.map((p) => (
+        <PromptCard key={p._id} promptObj={p} handleTagClick={handleTagClick} />
       ))}
     </div>
   )
@@ -52,7 +60,26 @@ const Feed = () => {
     fetchPrompts()
   }, [])
 
-  return <div>Feed</div>
+  const handleSearchChange = () => {}
+
+  const handleTagClick = () => {}
+
+  return (
+    <section className="feed">
+      <form className="relative w-full flex-center">
+        <input
+          type="text"
+          placeholder="Search for a tag or username"
+          value={searchText}
+          onChange={handleSearchChange}
+          className="search_input peer"
+          required
+        />
+      </form>
+
+      <PromptCardList data={prompts} handleTagClick={handleTagClick} />
+    </section>
+  )
 }
 
 export default Feed
