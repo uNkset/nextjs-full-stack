@@ -1,11 +1,17 @@
 import Link from 'next/link'
+import { PromptObjectProps } from './Feed'
+
+interface PostProps {
+  prompt: string
+  tag: string
+}
 
 interface FromProps {
   type: string
-  post: Record<string, string>
-  setPost: Function
+  post: PostProps
+  setPost: (arg: PostProps) => void
   submitting: boolean
-  handleSubmit: (e: any) => void // Function
+  handleSubmit: (arg: any) => void // Function
 }
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }: FromProps) => {
