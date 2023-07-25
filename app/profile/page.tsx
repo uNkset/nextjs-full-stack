@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import Profile from '@components/Profile'
+import { PromptObjectProps } from '@components/Feed'
 
 const MyProfile = () => {
   const router = useRouter()
@@ -23,7 +24,9 @@ const MyProfile = () => {
     if (userId) fetchMyPosts()
   }, [userId])
 
-  const handleEdit = () => {}
+  const handleEdit = (prompt: PromptObjectProps) => {
+    router.push(`/update-prompt?id=${prompt._id}`)
+  }
 
   const handleDelete = () => {}
 
