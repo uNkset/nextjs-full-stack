@@ -28,8 +28,8 @@ export interface PromptCardProps {
   key?: Key
   promptObj: PromptObjectProps
   handleTagClick?: Function
-  handleEdit?: Function
-  handleDelete?: Function
+  handleEdit?: () => void
+  handleDelete?: () => void
 }
 
 const PromptCardList = ({ data, handleTagClick }: PromptCardListProps) => {
