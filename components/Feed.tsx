@@ -11,7 +11,7 @@ interface UserProps {
   __v: string
 }
 
-interface PromptObjectProps {
+export interface PromptObjectProps {
   _id: string | number
   creator: UserProps
   prompt: string

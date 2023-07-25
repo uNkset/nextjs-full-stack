@@ -1,7 +1,9 @@
+import { PromptObjectProps } from './Feed'
+
 interface ProfileProps {
   name: string
   desc: string
-  data: any
+  data: Array<PromptObjectProps>
   handleEdit: Function
   handleDelete: Function
 }
@@ -13,6 +15,8 @@ const Profile = ({
   handleEdit,
   handleDelete,
 }: ProfileProps) => {
+  console.log(data)
+
   return <div>Profile</div>
 }
 
