@@ -69,7 +69,7 @@ const PromptCard = ({
         className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(promptObj.tag)}
       >
-        {promptObj.tag}
+        #{promptObj.tag}
       </p>
 
       {session?.user?.id === promptObj.creator._id &&
