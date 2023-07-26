@@ -5,8 +5,8 @@ interface ProfileProps {
   name: string
   desc: string
   data: Array<PromptObjectProps>
-  handleEdit: Function
-  handleDelete: Function
+  handleEdit: Function | ((arg: PromptObjectProps) => void)
+  handleDelete: Function | ((arg: PromptObjectProps) => void)
 }
 
 const Profile = ({

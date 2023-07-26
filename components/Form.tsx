@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { PromptObjectProps } from './Feed'
 
 interface PostProps {
   prompt: string
@@ -11,7 +10,7 @@ interface FromProps {
   post: PostProps
   setPost: (arg: PostProps) => void
   submitting: boolean
-  handleSubmit: (arg: any) => void // Function
+  handleSubmit: (arg: any) => void
 }
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }: FromProps) => {
