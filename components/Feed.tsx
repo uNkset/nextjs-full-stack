@@ -44,6 +44,7 @@ const PromptCardList = ({ data, handleTagClick }: PromptCardListProps) => {
 
 const Feed = () => {
   const [prompts, setPrompts] = useState([])
+
   const [searchText, setSearchText] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(setTimeout(() => {}))
   const [searchResults, setSearchResults] = useState([])

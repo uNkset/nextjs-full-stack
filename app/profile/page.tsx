@@ -13,6 +13,8 @@ const MyProfile = () => {
   const userId = session?.user?.id
   const [myPrompts, setMyPrompts] = useState([])
 
+  console.log(session)
+
   useEffect(() => {
     const fetchMyPosts = async () => {
       const response = await fetch(`/api/users/${userId}/posts`)
