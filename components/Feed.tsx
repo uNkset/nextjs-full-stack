@@ -21,13 +21,13 @@ export interface PromptObjectProps {
 
 interface PromptCardListProps {
   data: Array<PromptObjectProps>
-  handleTagClick: Function
+  handleTagClick: (arg: string) => void
 }
 
 export interface PromptCardProps {
   key?: Key
   promptObj: PromptObjectProps
-  handleTagClick?: Function
+  handleTagClick?: (arg: string) => void
   handleEdit?: () => void
   handleDelete?: () => void
 }
@@ -44,9 +44,8 @@ const PromptCardList = ({ data, handleTagClick }: PromptCardListProps) => {
 
 const Feed = () => {
   const [prompts, setPrompts] = useState([])
-
   const [searchText, setSearchText] = useState('')
-  const [searchTimeout, setSearchTimeout] = useState(null)
+  const [searchTimeout, setSearchTimeout] = useState(setTimeout(() => {}))
   const [searchResults, setSearchResults] = useState([])
 
   const fetchPrompts = async () => {
@@ -60,9 +59,35 @@ const Feed = () => {
     fetchPrompts()
   }, [])
 
-  const handleSearchChange = () => {}
+  const filteredPrompts = (searchText: string) => {
+    const regex = new RegExp(searchText, 'i')
+    return prompts.filter(
+      (p: PromptObjectProps) =>
+        regex.test(p.creator.username) ||
+        regex.test(p.prompt) ||
+        regex.test(p.tag)
+    )
+  }
 
-  const handleTagClick = () => {}
+  const handleSearchChange = (e: any) => {
+    clearTimeout(searchTimeout)
+    setSearchText(e.target.value)
+    //const debounce: NodeJS.Timeout = setTimeout(() => {})
+    //let debounce: ReturnType<typeof setTimeout>
+    let debounce = setTimeout(() => {
+      const searchResult = filteredPrompts(e.target.value)
+      setSearchResults(searchResult)
+    }, 500)
+
+    setSearchTimeout(debounce)
+  }
+
+  const handleTagClick = (tagName: string) => {
+    setSearchText(tagName)
+
+    const searchByTagResults = filteredPrompts(tagName)
+    setSearchResults(searchByTagResults)
+  }
 
   return (
     <section className="feed">
@@ -77,7 +102,11 @@ const Feed = () => {
         />
       </form>
 
-      <PromptCardList data={prompts} handleTagClick={handleTagClick} />
+      {searchText ? (
+        <PromptCardList data={searchResults} handleTagClick={handleTagClick} />
+      ) : (
+        <PromptCardList data={prompts} handleTagClick={handleTagClick} />
+      )}
     </section>
   )
 }
