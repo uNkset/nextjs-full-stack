@@ -46,7 +46,7 @@ const Feed = () => {
   const [prompts, setPrompts] = useState([])
 
   const [searchText, setSearchText] = useState('')
-  const [searchTimeout, setSearchTimeout] = useState(setTimeout(() => {}))
+  const [searchTimeout, setSearchTimeout]: any = useState(null)
   const [searchResults, setSearchResults] = useState([])
 
   const fetchPrompts = async () => {
