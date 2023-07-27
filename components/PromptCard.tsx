@@ -12,7 +12,7 @@ const PromptCard = ({
   handleEdit,
   handleDelete,
 }: PromptCardProps) => {
-  const { data: session } = useSession()
+  const { data: session }: any = useSession()
   const pathName = usePathname()
   const router = useRouter()
   const [copied, setCopied] = useState('')

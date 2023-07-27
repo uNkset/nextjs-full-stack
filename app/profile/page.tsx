@@ -9,7 +9,7 @@ import { PromptObjectProps } from '@components/Feed'
 
 const MyProfile = () => {
   const router = useRouter()
-  const { data: session } = useSession()
+  const { data: session }: any = useSession()
 
   const userId: string = session?.user?.id
   const [myPrompts, setMyPrompts] = useState([])
