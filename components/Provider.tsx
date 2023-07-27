@@ -9,7 +9,7 @@ interface SessionUserProps {
   name: string
 }
 
-interface SessionProps {
+export interface SessionProps {
   user: SessionUserProps
   expires: string
 }

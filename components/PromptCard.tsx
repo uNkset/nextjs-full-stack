@@ -17,7 +17,14 @@ const PromptCard = ({
   const router = useRouter()
   const [copied, setCopied] = useState('')
 
-  const handleProfileClick = () => {}
+  const handleProfileClick = () => {
+    if (promptObj.creator._id === session?.user?.id)
+      return router.push('/profile')
+
+    router.push(
+      `/profile/${promptObj.creator._id}?user=${promptObj.creator.username}`
+    )
+  }
   const handleCopy = () => {
     setCopied(promptObj.prompt)
     navigator.clipboard.writeText(promptObj.prompt)

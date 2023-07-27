@@ -10,10 +10,9 @@ import { PromptObjectProps } from '@components/Feed'
 const MyProfile = () => {
   const router = useRouter()
   const { data: session } = useSession()
-  const userId = session?.user?.id
-  const [myPrompts, setMyPrompts] = useState([])
 
-  console.log(session)
+  const userId: string = session?.user?.id
+  const [myPrompts, setMyPrompts] = useState([])
 
   useEffect(() => {
     const fetchMyPosts = async () => {
